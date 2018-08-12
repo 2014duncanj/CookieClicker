@@ -1,8 +1,20 @@
 from __future__ import division
 import Tkinter as tk
 import calendar, time, tkMessageBox, tkSimpleDialog, ctypes
-from PIL import Image, ImageTk
 
+try:
+    from PIL import Image, ImageTk
+except ImportError:
+    from sys import stdout
+    from os import devnull
+    from pip import main
+    oldOut = stdout
+    stdout = open(devnull, "w")
+    main(["install", "Pillow"])
+    stdout = oldOut
+
+    from PIL import Image, ImageTk
+    
 
 class Cookies:
     def __init__(self):
